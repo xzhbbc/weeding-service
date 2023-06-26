@@ -12,8 +12,8 @@ RUN apk add ca-certificates
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tencent.com/g' /etc/apk/repositories \
   && apk add --update --no-cache nodejs npm
 WORKDIR /app
-COPY *.json /app
-COPY .env /app
+COPY *.json /app/
+COPY .env /app/
 RUN npm config set registry https://mirrors.cloud.tencent.com/npm/
 #RUN npm install -g npm
 RUN npm install
