@@ -8,8 +8,10 @@ import Utils from '@/utils/utils'
 export const createStackdriverLogger = async () => {
   const LOGS_PATH = new ConfigService().get('LOGS_PATH')
   const nowDate = Utils.dateFormat()
+  // console.log(path.join(__dirname, `../../../logs/error.log`))
+  // console.log(__dirname)
   const logger = bunyan.createLogger({
-    name: `webIde-${process.env.BUILD_ENV}`,
+    name: `weeding-${process.env.BUILD_ENV}`,
     streams: [
       { stream: process.stdout, level: 'debug' },
       {
@@ -24,7 +26,7 @@ export const createStackdriverLogger = async () => {
       // },
       {
         // path: `${LOGS_PATH}/error.log`,
-        path: path.join(__dirname, `../../../../logs/error.log`),
+        path: `${LOGS_PATH}/error.log`,
         type: 'file',
         level: 'error'
         // period: '1d',
