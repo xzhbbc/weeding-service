@@ -19,6 +19,6 @@ async function bootstrap() {
   // 注册全局http异常过滤器
   app.useGlobalFilters(new HttpExceptionFilter())
   app.use(mw)
-  await app.listen(3000)
+  await app.listen(process.env.PORT || 80)
 }
 bootstrap()
