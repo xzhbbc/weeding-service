@@ -14,6 +14,7 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tencent.com/g' /etc/apk/repositorie
   && apk add --update --no-cache nodejs npm python2 make g++
 WORKDIR /app
 COPY . /app
+COPY .env /app/
 RUN npm config set registry https://mirrors.cloud.tencent.com/npm/
 #RUN npm install --global --production windows-build-tools
 #RUN npm install -g npm
@@ -23,4 +24,4 @@ RUN npm run build
 RUN mkdir /app/logs
 RUN mkdir /app/logs/error.log
 
-CMD ["node", "main.js"]
+CMD ["node", "dist/main.js"]
