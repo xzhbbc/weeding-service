@@ -24,4 +24,4 @@ RUN npm run build
 RUN mkdir /app/logs
 RUN mkdir /app/logs/error.log
 COPY . /app
-CMD ["node", "/dist/main.js"]
+CMD ["node", "main.js"]
