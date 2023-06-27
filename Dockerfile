@@ -13,8 +13,7 @@ RUN apk add ca-certificates
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tencent.com/g' /etc/apk/repositories \
   && apk add --update --no-cache nodejs npm python2 make g++
 WORKDIR /app
-COPY *.json /app/
-COPY .env /app/
+COPY . /app
 RUN npm config set registry https://mirrors.cloud.tencent.com/npm/
 #RUN npm install --global --production windows-build-tools
 #RUN npm install -g npm
@@ -23,5 +22,5 @@ RUN npm install
 RUN npm run build
 RUN mkdir /app/logs
 RUN mkdir /app/logs/error.log
-COPY . /app
+
 CMD ["node", "main.js"]
