@@ -18,7 +18,9 @@ COPY .env /app/
 RUN npm config set registry https://mirrors.cloud.tencent.com/npm/
 #RUN npm install --global --production windows-build-tools
 #RUN npm install -g npm
-RUN npm install
+RUN apk add --no-cache --virtual .build-deps make gcc g++ python \
+  && npm install --production --silent \
+  && apk del .build-deps
 RUN ls
 RUN npm run build
 RUN mkdir /app/logs
