@@ -19,7 +19,7 @@ RUN npm config set registry https://mirrors.cloud.tencent.com/npm/
 #RUN npm install --global --production windows-build-tools
 #RUN npm install -g npm
 RUN npm install
-RUN ls
+#RUN ls
 RUN npm run build
 RUN mkdir /app/logs
 RUN mkdir /app/logs/error.log
