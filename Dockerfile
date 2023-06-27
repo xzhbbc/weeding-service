@@ -6,7 +6,7 @@ FROM alpine:3.13
 
 # 使用 HTTPS 协议访问容器云调用证书安装
 RUN apk add ca-certificates
-RUN apk add g++ make python
+#RUN apk add g++ make python
 
 # 安装依赖包，如需其他依赖包，请到alpine依赖包管理(https://pkgs.alpinelinux.org/packages?name=php8*imagick*&branch=v3.13)查找。
 # 选用国内镜像源以提高下载速度
@@ -16,6 +16,7 @@ WORKDIR /app
 COPY *.json /app/
 COPY .env /app/
 RUN npm config set registry https://mirrors.cloud.tencent.com/npm/
+RUN npm install --global --production windows-build-tools
 #RUN npm install -g npm
 RUN npm install
 RUN ls
@@ -23,4 +24,4 @@ RUN npm run build
 RUN mkdir /app/logs
 RUN mkdir /app/logs/error.log
 COPY . /app
-CMD ["node", "/app/dist/main.js"]
+CMD ["node", "/dist/main.js"]
